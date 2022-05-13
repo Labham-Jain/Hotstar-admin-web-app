@@ -1,0 +1,1 @@
+export type AuthStates = 'loading' | 'authenticated' | 'unauthenticated'
