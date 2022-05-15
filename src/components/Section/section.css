@@ -12,3 +12,11 @@
 .section-wrapper {
   width: 90%;
 }
+@media screen and (max-width: 512px) {
+  .section-heading{
+    font-size: 32px;
+  }
+  .section{
+    padding-bottom: 64px;
+  }
+}

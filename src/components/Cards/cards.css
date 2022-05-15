@@ -1,6 +1,6 @@
 .cards {
-  display: grid;
+  display: flex;
   gap: 50px;
-  grid-template-columns: repeat(4, 1fr);
-  width: max-content;
+  flex-wrap: wrap;
+  justify-content: center;
 }

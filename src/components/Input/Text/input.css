@@ -1,0 +1,24 @@
+.input-box {
+  width: 100%;
+}
+.input-wrapper{
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  width: 100%;
+}
+.input-title{
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: var(--accent);
+}
+.input {
+  background: transparent;
+  outline: none;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  color: var(--text);
+}
+.input::placeholder {
+  font-size: 12px;
+}

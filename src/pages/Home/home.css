@@ -3,4 +3,12 @@
   align-items: center;
   justify-content: center;
   margin-top: 48px;
+  padding-top: 96px;
+}
+
+@media screen and (max-width: 1500px) {
+  .cards-container{
+    margin-top: 32px;
+    padding-top: 32px;
+  }
 }

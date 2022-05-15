@@ -1,17 +1,35 @@
 import { createContext, useEffect, useState } from 'react'
+import ResponseJSON from '../../../@types/ResponseJSON'
 import API from '../../api/api'
 import { GenericContextComponent } from '../Contexts'
-import { AuthStates } from './AuthContext'
+import { AuthCtxType, AuthStates } from './AuthContext'
 
-export const AuthCtx = createContext<any>({})
+export const AuthCtx = createContext<AuthCtxType>({
+  state: 'loading',
+  details: undefined
+})
 
 const AuthContext = ({children}: GenericContextComponent) => {
-  const [authenticationState, setAuthenticationState] = useState<AuthStates>('loading');
-  const [authDetails, setAuthDetails] = useState();
+  const [authenticationState, setAuthenticationState] = useState<AuthCtxType['state']>('loading');
+  const [authDetails, setAuthDetails] = useState<AuthCtxType['details']>();
   
   useEffect(() => {
     const promise = (async () => {
-      const response = await API.get('user').json();
+      const response: ResponseJSON = await (await API.get('user')).json();
+
+      switch (response.status) {
+        case 200:
+          setAuthenticationState('authenticated');
+          setAuthDetails(response.data);
+          break;
+        case 403:
+          setAuthenticationState('unauthenticated');
+          break;
+        default:
+          // handle toast message
+          break;
+      }
+
     })()
 
     return () => {
@@ -19,8 +37,18 @@ const AuthContext = ({children}: GenericContextComponent) => {
     }
   }, []);
 
+
+  const value: AuthCtxType = {
+    state: authenticationState,
+    details: authDetails
+  }
+
+  useEffect(() => {
+    console.log(authenticationState);
+  }, [authenticationState]);
+
   return (
-    <AuthCtx.Provider value={{}}>
+    <AuthCtx.Provider value={value}>
       {children}
     </AuthCtx.Provider>
   )

@@ -7,6 +7,7 @@ const API = ky.create({
     'authorization': token ? `Bearer ${token}` : undefined
   },
   throwHttpErrors: false,
+  retry: 0,
 })
 
 export default API;
