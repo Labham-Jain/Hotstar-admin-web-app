@@ -4,6 +4,7 @@ import Navigation from './components/Navigation'
 import Contexts from './Contexts'
 import Home from './pages/Home'
 import Login from './pages/Login'
+import ListUsers from './pages/ListUsers'
 const App = () => {
   return (
     <Router>
@@ -12,6 +13,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path='/login' element={<Login />} />
+          <Route path='/list-users' element={<ListUsers />} />
         </Routes>
       </Contexts>
     </Router>
